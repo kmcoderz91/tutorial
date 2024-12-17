@@ -51,10 +51,51 @@ Message queues facilitate communication between distributed systems by allowing 
 e.g. Kafka
 
 #### **Design Patterns**
-1. Bloom Filters
-2. Consistent Hashing
-3. Quorum
-4. Checksum
-5. Merkle Trees
-6. Leader Election
+1. Bloom Filters : It is a space-efficient probabilistic data structure used to test whether a given element is a member of a set. It achieves this by using multiple hash functions to map elements to a bit array. While false positives are possible, false negatives are not. This makes Bloom filters valuable in scenarios where memory is constrained, and a slight risk of false positives is acceptable, such as in caching systems and network routing tables.
+2. Consistent Hashing : It is a technique used in distributed systems to efficiently distribute data across a changing set of nodes. Unlike traditional hash functions, consistent hashing minimizes the impact of adding or removing nodes, ensuring that most keys remain mapped to the same nodes. This is particularly useful in scenarios like distributed caching and load balancing, where maintaining a stable mapping despite node changes is essential for performance and data integrity.
+3. Quorum : It is a strategy to achieve consensus among a majority of nodes. It helps in ensuring that a certain number of nodes must agree on an operation for it to be considered successful. Quorums are crucial for maintaining data consistency and availability, especially in scenarios prone to network partitions. Variations like the "two-thirds" or "majority" quorum systems are common in databases, providing a balance between fault tolerance and system responsiveness.
+4. Checksum : A checksum is a value derived from the data in a file or message, used to verify its integrity. Various algorithms, like CRC or Adler-32, calculate checksums, and if the checksum of the received data matches the calculated checksum, it indicates that the data is likely intact.
+5. Merkle Trees : It is a hierarchical data structure that facilitates efficient verification of large datasets. It works by recursively hashing pairs of data until a single hash, known as the Merkle root, is obtained. If any part of the data changes, it only affects the path from the altered data to the root, simplifying verification.
+6. Leader Election : It is a crucial concept in distributed systems where nodes must select a leader to coordinate and manage the distributed activities. Algorithms like Paxos and Raft are often employed for leader election, ensuring that one node takes charge while others follow. 
+
+#### **Database**
+1. Relational databases
+2. Non-relational databases
+##### **How to choose a Database**
+1. How much data do you expect to store when the application is mature? 
+2. How many users do you expect to handle simultaneously at peak load? 
+3. What availability, scalability, latency, throughput, and data consistency does your application need? 
+4. How often will your database schemas change? 
+5. What is the geographic distribution of your user population? 
+6. What is the natural “shape” of your data? 
+7. Does your application need online transaction processing (OLTP), analytic queries (OLAP), or both? 
+8. What ratio of reads to writes do you expect in production? 
+9. What are your preferred programming languages? 
+10. Do you have a budget? If so, will it cover licenses and support contracts?
+##### **ACID Properties**
+* Atomicity: By this, we mean that either the entire transaction takes place at once or doesn’t happen at all. There is no midway i.e. transactions do not occur partially.
+* Consistency: This means that integrity constraints must be maintained so that the database is consistent before and after the transaction. It refers to the correctness of a database.
+* Isolation: This property ensures that multiple transactions can occur concurrently without leading to the inconsistency of the database state. Transactions occur independently without interference.
+* Durability: This property ensures that once the transaction has completed execution, the updates and modifications to the database are stored in and written to disk and they persist even if a system failure occurs.
+##### **BASE Properties**
+* Basically Available
+* Soft State
+* Eventually Consistent
+BASE prioritizes excessive availability and performance over strict consistency.
+##### **Sharding**
+Sharding is a technique that splits a large database or dataset into smaller partitions, or shards, and stores them across multiple database servers. It's used to improve the performance and scalability of a system. (horizontal partitioning)
+##### **Partitioning**
+partitioning is the process of dividing a database into separate sections, or partitions, that can be stored, accessed, and managed independently. The goal of partitioning is to improve the performance, scalability, and availability of large databases.
+
+#### **Low-Level Design**
+It is a component-level design process that follows step by step refinement process. The input to LLD is HLD.  It provides us with the structure and behavior of class as different entities have different character sets. From this design, it is easy for a developer to write down logic and henceforth the actual code for it.
+
+#### **UML Diagram**
+1. Component Diagrams
+2. Activity Diagrams
+3. Use Case Diagram
+4. Sequence diagram
+5. Data Flow Diagram
+6. Entity Relational Model
+7. Package diagram
 
